@@ -22,7 +22,7 @@ def contact(request):
 		contact_email = request.POST.get('email')
 		message = request.POST.get('message')
 		try:
-			send_mail('Email from pestov.me', message, contact_email, ['grizzlyarchi@gmail.com'])
+			send_mail('Email from pestov.me', message + '\n' + contact_email, contact_email, ['grizzlyarchi@gmail.com'])
 		except Exception:
 			sended = False
 	args = {}
