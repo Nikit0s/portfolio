@@ -15,9 +15,12 @@ Including another URLconf
 """
 from django.conf.urls import include, url
 from django.contrib import admin
+from django.conf import settings
+from django.http import HttpResponseRedirect
 
 urlpatterns = [
 	# url(r'^auth/', include('loginsys.urls')),
 	url(r'^admin/', include(admin.site.urls)),
+    url(r'^favicon.ico/$', lambda x: HttpResponseRedirect(settings.STATIC_URL+'ico/favicon.ico')), #google chrome favicon fix
 	url(r'', include('loginsys.urls')),
 ]
