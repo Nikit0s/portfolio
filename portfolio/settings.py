@@ -23,9 +23,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'j$-2tpj)4z!dkjp!(-8z*922+-8dvr-j4mgufucl&q=hby!70!'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-TEMPLATE_DEBUG = False
+TEMPLATE_DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
@@ -40,6 +40,7 @@ INSTALLED_APPS = (
 	'django.contrib.messages',
 	'django.contrib.staticfiles',
 	'loginsys',
+	'gallery',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -60,6 +61,7 @@ TEMPLATES = [
 		'BACKEND': 'django.template.backends.django.DjangoTemplates',
 		'DIRS': [
 			os.path.join(BASE_DIR, 'templates'),
+			os.path.join(BASE_DIR, 'gallery/templates'),
 		],
 		'APP_DIRS': True,
 		'OPTIONS': {
@@ -109,8 +111,6 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = (
 	os.path.join(BASE_DIR, 'static'),
 )
-
-STATIC_ROOT = '/opt/portfolio/static/'
 
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'mepestovme@gmail.com'

@@ -11,21 +11,23 @@ from django.core.mail import send_mail
 # Create your views here.
 
 def main(request):
-	args = {}
-	args.update(csrf(request))
-	return render_to_response('main.html', args)
+    args = {}
+    args.update(csrf(request))
+    return render_to_response('main.html', args)
+
 
 def contact(request):
-	sended = True
-	if request.method == 'POST':
-		contact_name = request.POST.get('contactName')
-		contact_email = request.POST.get('email')
-		message = request.POST.get('message')
-		try:
-			send_mail('Email from pestov.me', message + '\n' + contact_email, contact_email, ['grizzlyarchi@gmail.com'])
-		except Exception:
-			sended = False
-	args = {}
-	args.update(csrf(request))
-	args['emailSended'] = sended
-	return render_to_response('main.html', args)
+    sended = True
+    if request.method == 'POST':
+        contact_name = request.POST.get('contactName')
+        contact_email = request.POST.get('email')
+        message = request.POST.get('message')
+        try:
+            send_mail('Email from pestov.me', message + '\n' + contact_email,
+                      contact_email, ['grizzlyarchi@gmail.com'])
+        except Exception:
+            sended = False
+    args = {}
+    args.update(csrf(request))
+    args['emailSended'] = sended
+    return render_to_response('main.html', args)
