@@ -21,6 +21,7 @@ from django.http import HttpResponseRedirect
 urlpatterns = [
 	# url(r'^auth/', include('loginsys.urls')),
 	url(r'^admin/', include(admin.site.urls)),
-    url(r'^favicon.ico/$', lambda x: HttpResponseRedirect(settings.STATIC_URL+'ico/favicon.ico')), #google chrome favicon fix
+	url(r'^gallery/$', include('gallery.urls')),
+	url(r'^favicon.ico/$', lambda x: HttpResponseRedirect(settings.STATIC_URL+'ico/favicon.ico')), #google chrome favicon fix
 	url(r'', include('loginsys.urls')),
 ]

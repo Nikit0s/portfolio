@@ -40,6 +40,7 @@ INSTALLED_APPS = (
 	'django.contrib.messages',
 	'django.contrib.staticfiles',
 	'loginsys',
+	'gallery',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -60,6 +61,7 @@ TEMPLATES = [
 		'BACKEND': 'django.template.backends.django.DjangoTemplates',
 		'DIRS': [
 			os.path.join(BASE_DIR, 'templates'),
+			os.path.join(BASE_DIR, 'gallery/templates'),
 		],
 		'APP_DIRS': True,
 		'OPTIONS': {
@@ -106,11 +108,12 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+STATIC_ROOT = '/opt/portfolio/static/'
+
 STATICFILES_DIRS = (
 	os.path.join(BASE_DIR, 'static'),
+	os.path.join(BASE_DIR, 'gallery/static'),
 )
-
-STATIC_ROOT = '/opt/portfolio/static/'
 
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'mepestovme@gmail.com'
