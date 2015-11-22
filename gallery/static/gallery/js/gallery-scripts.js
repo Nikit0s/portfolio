@@ -9,7 +9,6 @@ $(document).ready(function () {
 	}
 	$(document).on('keydown', function (e) {
 		if (e.which === 39) {
-			console.log('here');
 			changePhoto(next, next.src);
 		}
 	});
