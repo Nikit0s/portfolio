@@ -9,7 +9,6 @@
 		<link rel="icon" href="{% static "ico/favicon.ico"%}" type="image/x-icon">
 		<!-- JQuery -->
 		<script src="https://yastatic.net/jquery/2.1.4/jquery.min.js"></script>
-		<script src="{% static "gallery/js/gallery-scripts.js"%}"></script>
 		<!-- Latest compiled and minified CSS -->
 		<link rel="stylesheet" href="{% static "css/bootstrap.min.css"%}">
 		<!-- Latest compiled and minified JavaScript -->
@@ -56,7 +55,7 @@
 	<section class="gallery-top container">
 		<div class="row">
 			<div class="col-md-12 text-center">
-				<img class="img-resposive big-img" src="{% static "gallery/img/pafos.jpg"%}">
+				<img id="big-photo" class="img-resposive big-img" src="{% static "gallery/img/pafos.jpg"%}">
 			</div>
 		</div>
 	</section>
@@ -76,5 +75,6 @@
 			</div>
 		</div>
 	</section>
+	<script src="{% static "gallery/js/gallery-scripts.js"%}"></script>
 	</body>
 </html>
