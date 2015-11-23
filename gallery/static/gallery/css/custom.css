@@ -1,6 +1,11 @@
 .gallery-top
 {
-	padding-top: 100px;
+    display: none;
+}
+
+.gallery-top-visible
+{
+    display: block;
 }
 
 .gallery-top .big-img
@@ -27,4 +32,9 @@
 	transform: scale(1.5);
 	transition-property: transform;
 	transition-duration: .3s;
+}
+
+.nav-buffer
+{
+    height: 100px;
 }
