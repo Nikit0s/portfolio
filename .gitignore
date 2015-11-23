@@ -1,2 +1,3 @@
 db.sqlite3
 *.pyc
+portfolio/settings.py
