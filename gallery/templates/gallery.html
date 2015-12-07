@@ -1,81 +1,56 @@
+{% extends 'base.html '%}
 {% load staticfiles %}
-<!DOCTYPE html>
-<html>
-	<head>
-		<title>My Portfolio</title>
-		<meta charset="UTF-8">
-		<!-- Favicon -->
-		<link rel="shortcut icon" href="{% static "ico/favicon.ico"%}" type="image/x-icon">
-		<link rel="icon" href="{% static "ico/favicon.ico"%}" type="image/x-icon">
-		<!-- JQuery -->
-		<script src="https://yastatic.net/jquery/2.1.4/jquery.min.js"></script>
-		<!-- Latest compiled and minified CSS -->
-		<link rel="stylesheet" href="{% static "css/bootstrap.min.css"%}">
-		<!-- Latest compiled and minified JavaScript -->
-		<script src="{% static "js/bootstrap.min.js"%}"></script>
-		<!-- My Styles -->
-		<link href="{% static "css/font-awesome.min.css"%}" rel="stylesheet" type="text/css">
-		<link rel="stylesheet" href="{% static "css/mystyle.css"%}">
-		<link rel="stylesheet" href="{% static "gallery/css/custom.css"%}">
-
-	</head>
-	<body data-spy="scroll" data-target="nav">
-	<nav class="navbar navbar-my-style navbar-fixed-top" role="navigation">
-		<div class="container">
-			<!-- Brand and toggle get grouped for better mobile display -->
-			<div class="navbar-header">
-				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-					<span class="sr-only">Toggle navigation</span>
-					<i class="fa fa-bars"></i>
-				</button>
-				<img src="{% static "img/cutmypic.png"%}" class="navbar-logo pull-left" alt="" />
-				<a href="/" class="navbar-brand">GrizzlyArchi</a>
-			</div>
-			<!-- Collect the nav links, forms, and other content for toggling -->
-			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-				<ul class="nav navbar-nav navbar-right">
-					<li>
-						<a href="/#portfolio">Работы</a>
-					</li>
-					<li>
-						<a href="/#about">Обо мне</a>
-					</li>
-					<li>
-						<a href="/gallery/">Галерея</a>
-					</li>
-					<li>
-						<a href="/#contact">Связь со мной</a>
-					</li>
-				</ul>
-			</div>
-			<!-- /.navbar-collapse -->
+{% block gallery %}
+<div class="nav-buffer"></div>
+<section class="gallery-top container">
+	<div class="row">
+		<div class="col-md-12 text-center">
+			<img id="big-photo" class="img-responsive big-img" src="">
 		</div>
-		<!-- /.container -->
-	</nav>
-	<div class="nav-buffer"></div>
-	<section class="gallery-top container">
-		<div class="row">
-			<div class="col-md-12 text-center">
-				<img id="big-photo" class="img-responsive big-img" src="{% static "gallery/img/pafos.jpg"%}">
-			</div>
+	</div>
+</section>
+<section class="gallery-bottom container">
+	<div class="row">
+		<div class="col-sm-3 col-xs-6 text-center">
+			<img class="img-responsive small-img" src="{{ photo_1.photo.url }}">
 		</div>
-	</section>
-	<section class="gallery-bottom container">
-		<div class="row">
-			<div class="col-sm-3 col-xs-6 text-center">
-				<img class="img-responsive small-img" src="{% static "gallery/img/pafos.jpg"%}">
-			</div>
-			<div class="col-sm-3 col-xs-6 text-center">
-				<img class="img-responsive small-img" src="{% static "gallery/img/bicycle.jpg"%}">
-			</div>
-			<div class="col-sm-3 col-xs-6 text-center">
-				<img class="img-responsive small-img" src="{% static "gallery/img/final.jpg"%}">
-			</div>
-			<div class="col-sm-3 col-xs-6 text-center">
-				<img class="img-responsive small-img" src="{% static "gallery/img/big-rides.jpg"%}">
-			</div>
+		<div class="col-sm-3 col-xs-6 text-center">
+			<img class="img-responsive small-img" src="{{ photo_2.photo.url }}">
 		</div>
-	</section>
-	<script src="{% static "gallery/js/gallery-scripts.js"%}"></script>
-	</body>
-</html>
+		<div class="col-sm-3 col-xs-6 text-center">
+			<img class="img-responsive small-img" src="{{ photo_3.photo.url }}">
+		</div>
+		<div class="col-sm-3 col-xs-6 text-center">
+			<img class="img-responsive small-img" src="{{ photo_4.photo.url }}">
+		</div>
+	</div>
+</section>
+<div class="comments-buffer"></div>
+<section class="comments container invisible">
+</section>
+<section class="comments-form invisible container">
+	<div class="row">
+		<div class="col-sm-3"></div>
+		<article class="form col-sm-6">
+			<form id="contact-form" action="/gallery/addcomment/" method="post">
+				{% csrf_token %}
+				<div class="form-group">
+					<div class="controls">
+						<textarea id="contact-message" name="message" placeholder="Введите сообщение" class="form-control" rows="6" required></textarea>
+						<i class="fa fa-comment"></i>
+						<input id="photoURL" name="photoURL" value="" type="hidden">
+					</div>
+				</div>
+				<p>
+					<button name="submit" type="submit" class="btn btn-primary"><i class="fa fa-paper-plane"></i>Оставить комментарий</button>
+				</p>
+				<input type="hidden" name="submitted" id="submitted" value="true">
+			</form>
+			{% if login_error %}
+			<div class="text-danger text-center">Только зарегистрированные пользователи могут оставлять сообщения!</div>
+			{% endif %}
+		</article>
+	</div>
+</section>
+<script src="{% static "gallery/js/gallery-scripts.js"%}"></script>
+{% endblock %}

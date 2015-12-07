@@ -1,194 +1,143 @@
+{% extends 'base.html '%}
 {% load staticfiles %}
-<!DOCTYPE html>
-<html>
-	<head>
-		<title>My Portfolio</title>
-		<meta charset="UTF-8">
-		<!-- Favicon -->
-		<link rel="shortcut icon" href="{% static "ico/favicon.ico"%}" type="image/x-icon">
-		<link rel="icon" href="{% static "ico/favicon.ico"%}" type="image/x-icon">
-		<!-- JQuery -->
-		<script src="https://yastatic.net/jquery/2.1.4/jquery.min.js"></script>
-		<!-- Latest compiled and minified CSS -->
-		<link rel="stylesheet" href="{% static "css/bootstrap.min.css"%}">
-		<!-- Latest compiled and minified JavaScript -->
-		<script src="{% static "js/bootstrap.min.js"%}"></script>
-		<!-- My Styles -->
-		<link href="{% static "css/font-awesome.min.css"%}" rel="stylesheet" type="text/css">
-		<link rel="stylesheet" href="{% static "css/mystyle.css"%}">
-
-	</head>
-	<body data-spy="scroll" data-target="nav">
-	<nav class="navbar navbar-my-style navbar-fixed-top" role="navigation">
-		<div class="container">
-			<!-- Brand and toggle get grouped for better mobile display -->
-			<div class="navbar-header">
-				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-					<span class="sr-only">Toggle navigation</span>
-					<i class="fa fa-bars"></i>
-				</button>
-				<img src="{% static "img/cutmypic.png"%}" class="navbar-logo pull-left" alt="" />
-				<a href="/" class="navbar-brand">GrizzlyArchi</a>
-			</div>
-			<!-- Collect the nav links, forms, and other content for toggling -->
-			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-				<ul class="nav navbar-nav navbar-right">
-					<li>
-						<a href="#portfolio">Работы</a>
-					</li>
-					<li>
-						<a href="#about">Обо мне</a>
-					</li>
-					<li>
-						<a href="gallery/">Галерея</a>
-					</li>
-					<li>
-						<a href="#contact">Связь со мной</a>
-					</li>
-				</ul>
-			</div>
-			<!-- /.navbar-collapse -->
-		</div>
-		<!-- /.container -->
-	</nav>
-	<header>
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-12">
-					<img src="{% static "img/cutmypic.png"%}" alt="Nikit0s" class="img-responsive">
-					<div class="intro-text">
-						<ul class="brands brands-inline hidden-xs">
-							<li><a href="#"><i class="fa fa-facebook"></i></a></li>
-							<li><a href="#"><i class="fa fa-twitter"></i></a></li>
-						</ul>
-						<h2>GrizzlyArchi</h2>
-						<ul class="brands brands-inline hidden-xs">
-							<li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-							<li><a href="https://vk.com/nikit0000s"><i class="fa fa-vk"></i></a></li>
-						</ul>
-					</div>
-					<div>
-						<span class="skills">Student - Ninja - Student</span>
-					</div>
+{% block main %}
+<header>
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<img src="{% static "img/cutmypic.png"%}" alt="Nikit0s" class="img-responsive">
+				<div class="intro-text">
+					<ul class="brands brands-inline hidden-xs">
+						<li><a href="https://www.facebook.com/grizzlyarchi"><i class="fa fa-facebook"></i></a></li>
+						<li><a href="https://twitter.com/Nikit0000s"><i class="fa fa-twitter"></i></a></li>
+					</ul>
+					<h2>GrizzlyArchi</h2>
+					<ul class="brands brands-inline hidden-xs">
+						<li><a href="https://plus.google.com/u/0/113523025042447626582"><i class="fa fa-google-plus"></i></a></li>
+						<li><a href="https://vk.com/nikit0000s"><i class="fa fa-vk"></i></a></li>
+					</ul>
+				</div>
+				<div>
+					<span class="skills">Student - Ninja - Student</span>
 				</div>
 			</div>
 		</div>
-	</header>
-	<section class="portfolio" id="portfolio">
-			<div class="container">
-				<div class="row">
-					<div class="col-lg-12 text-center">
-						<h2>Портфолио</h2>
-						<hr class="divider-portfolio">
-					</div>
-				</div>
-				<!-- Portfolio Item -->
-				<div class="row">
-					<div class="col-lg-8">
-						<img class="img-responsive img-big" src="{% static "img/d2chance-visible.png"%}">
-					</div>
-					<div class="col-lg-4">
-						<h3>Описание проекта:</h3>
-						<p>
-							Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nobis, minus, soluta! Asperiores explicabo, quas? Placeat ea voluptatum sunt recusandae ipsam nostrum, vel cum eaque non nobis in magnam aliquid illo deleniti voluptates fuga voluptate dolore dignissimos rem. Ab labore aliquid ipsum consectetur molestiae et dicta pariatur veniam soluta, voluptates nostrum.
-						</p>
-						<h3>Детали:</h3>
-						<ul>
-							<li>Lorem ipsum</li>
-							<li>dolor sit</li>
-							<li>amet, consectetur</li>
-							<li>adipisicing elit.</li>
-						</ul>
-					</div>
-				<!-- ./row -->
-				</div>
-				<!-- Another projects -->
-				<div class="row">
-					<div class="col-lg-12">
-						<h3>Работы:</h3>
-					</div>
-					<div class="col-sm-3 col-xs-6">
-						<img class="img-responsive img-small" src="{% static "img/d2chance-visible.png"%}">
-					</div>
-					<div class="col-sm-3 col-xs-6">
-						<img class="img-responsive img-small" src="{% static "img/d2chance-visible.png"%}">
-					</div>
-					<div class="col-sm-3 col-xs-6">
-						<img class="img-responsive img-small" src="{% static "img/d2chance-visible.png"%}">
-					</div>
-					<div class="col-sm-3 col-xs-6">
-						<img class="img-responsive img-small" src="{% static "img/d2chance-visible.png"%}">
-					</div>
-				<!-- ./row -->
-				</div>
-			</div>
-	</section>
-	<section class="about" id="about">
+	</div>
+</header>
+<section class="portfolio" id="portfolio">
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-12 text-center">
-					<h2>Обо мне</h2>
-					<hr class="divider-about">
-				</div>
-			<!-- /.row -->
-			</div>
-			<div class="row add-padding">
-				<div class="col-sm-6">
-					<img class="img-responsive polaroid" src="{% static "img/about.jpg"%}">
-				</div>
-				<div class="col-sm-6">
-					<h1>
-						Привет<br>
-						Меня зовут Никита
-					</h1>
-					<p>
-						Меня зовут Никита Пестов, GrizzlyArchi - мой псевдоним, под которым я известен в
-						сети. Я студент Уральского Федерального Университета математико-механического
-						факультета. Вместе с друзьями из моей группы мы занимались несколькими проектами,
-						некоторые из которых представлены на этом сайте.
-					</p>
+					<h2>Портфолио</h2>
+					<hr class="divider-portfolio">
 				</div>
 			</div>
-		</div>
-	</section>
-	<section class="contact" id="contact">
-		<div class="container text-center">
+			<!-- Portfolio Item -->
 			<div class="row">
-				<div class="col-sm-6 col-md-5 text-right">
-					<h1>Связаться со мной</h1>
-					<p>
-						Если вы хотите задать мне какой-либо вопрос, предложить работу или просто пообщаться,
-						то можете написать мне при помощи этой формы.
-					</p>
+				<div class="col-lg-8">
+					<img class="img-responsive img-big" src="{% static "img/d2chance-visible.png"%}">
 				</div>
-				<form id="contact-form" class="col-sm-6 col-md-offset-1" action="/contact/" method="post">
-					{% csrf_token %}
-					<div class="form-group">
-						<div class="controls">
-							<input id="contact-name" name="contactName" placeholder="Ваше имя" class="form-control" type="text" required>
-							<i class="fa fa-user"></i>
-						</div>
-					</div><!-- End name input -->
-					<div class="form-group">
-						<div class=" controls">
-							<input id="contact-mail" name="email" placeholder="Ваш email" class="form-control" type="email" required>
-							<i class="fa fa-envelope"></i>
-						</div>
-					</div><!-- End email input -->
-					
-					<div class="form-group">
-						<div class="controls">
-							<textarea id="contact-message" name="message" placeholder="Введите сообщение" class="form-control" rows="6" required></textarea>
-							<i class="fa fa-comment"></i>
-						</div>
-					</div><!-- End textarea -->
+				<div class="col-lg-4">
+					<h3>Описание проекта:</h3>
 					<p>
-						<button name="submit" type="submit" class="btn btn-primary"><i class="fa fa-paper-plane"></i>Отправить письмо</button>
+						Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nobis, minus, soluta! Asperiores explicabo, quas? Placeat ea voluptatum sunt recusandae ipsam nostrum, vel cum eaque non nobis in magnam aliquid illo deleniti voluptates fuga voluptate dolore dignissimos rem. Ab labore aliquid ipsum consectetur molestiae et dicta pariatur veniam soluta, voluptates nostrum.
 					</p>
-					<input type="hidden" name="submitted" id="submitted" value="true">
-				</form>
+					<h3>Детали:</h3>
+					<ul>
+						<li>Lorem ipsum</li>
+						<li>dolor sit</li>
+						<li>amet, consectetur</li>
+						<li>adipisicing elit.</li>
+					</ul>
+				</div>
+			<!-- ./row -->
+			</div>
+			<!-- Another projects -->
+			<div class="row">
+				<div class="col-lg-12">
+					<h3>Работы:</h3>
+				</div>
+				<div class="col-sm-3 col-xs-6">
+					<img class="img-responsive img-small" src="{% static "img/d2chance-visible.png"%}">
+				</div>
+				<div class="col-sm-3 col-xs-6">
+					<img class="img-responsive img-small" src="{% static "img/d2chance-visible.png"%}">
+				</div>
+				<div class="col-sm-3 col-xs-6">
+					<img class="img-responsive img-small" src="{% static "img/d2chance-visible.png"%}">
+				</div>
+				<div class="col-sm-3 col-xs-6">
+					<img class="img-responsive img-small" src="{% static "img/d2chance-visible.png"%}">
+				</div>
+			<!-- ./row -->
 			</div>
 		</div>
-	</section>
-	</body>
-</html>
+</section>
+<section class="about" id="about">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12 text-center">
+				<h2>Обо мне</h2>
+				<hr class="divider-about">
+			</div>
+		<!-- /.row -->
+		</div>
+		<div class="row add-padding">
+			<div class="col-sm-6">
+				<img class="img-responsive polaroid" src="{% static "img/about.jpg"%}">
+			</div>
+			<div class="col-sm-6">
+				<h1>
+					Привет<br>
+					Меня зовут Никита
+				</h1>
+				<p>
+					Меня зовут Никита Пестов, GrizzlyArchi - мой псевдоним, под которым я известен в
+					сети. Я студент <a href="http://www.urfu.ru/ru/">Уральского Федерального Университета</a> математико-механического
+					<a href="http://imkn.urfu.ru/">факультета</a>. Вместе с друзьями из моей группы мы занимались несколькими проектами,
+					некоторые из которых представлены на этом сайте.
+				</p>
+			</div>
+		</div>
+	</div>
+</section>
+<section class="contact" id="contact">
+	<div class="container text-center">
+		<div class="row">
+			<div class="col-sm-6 col-md-5 text-right">
+				<h1>Связаться со мной</h1>
+				<p>
+					Если вы хотите задать мне какой-либо вопрос, предложить работу или просто пообщаться,
+					то можете написать мне при помощи этой формы.
+				</p>
+			</div>
+			<form id="contact-form" class="col-sm-6 col-md-offset-1" action="/contact/" method="post">
+				{% csrf_token %}
+				<div class="form-group">
+					<div class="controls">
+						<input id="contact-name" name="contactName" placeholder="Ваше имя" class="form-control" type="text" required>
+						<i class="fa fa-user"></i>
+					</div>
+				</div><!-- End name input -->
+				<div class="form-group">
+					<div class=" controls">
+						<input id="contact-mail" name="email" placeholder="Ваш email" class="form-control" type="email" required>
+						<i class="fa fa-envelope"></i>
+					</div>
+				</div><!-- End email input -->
+				
+				<div class="form-group">
+					<div class="controls">
+						<textarea id="contact-message" name="message" placeholder="Введите сообщение" class="form-control" rows="6" required></textarea>
+						<i class="fa fa-comment"></i>
+					</div>
+				</div><!-- End textarea -->
+				<p>
+					<button name="submit" type="submit" class="btn btn-primary"><i class="fa fa-paper-plane"></i>Отправить письмо</button>
+				</p>
+				<input type="hidden" name="submitted" id="submitted" value="true">
+			</form>
+		</div>
+	</div>
+</section>
+{% endblock %}

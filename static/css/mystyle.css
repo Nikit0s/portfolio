@@ -171,6 +171,11 @@ header .intro-text h2 {
 	padding: 50px 0;
 }
 
+.about a
+{
+	color: #a29a4c;
+}
+
 .about h2
 {
 	color: #fff;
@@ -315,4 +320,14 @@ header .intro-text h2 {
 #contact-form button i
 {
 	padding: 0 10px;
+}
+
+.registration
+{
+	margin-top: 100px;
+}
+
+.registration .input-group
+{
+	margin-bottom: 10px;
 }

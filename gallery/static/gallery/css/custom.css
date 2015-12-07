@@ -1,3 +1,8 @@
+.invisible
+{
+	display: none;
+}
+
 .gallery-top
 {
     display: none;
@@ -36,5 +41,47 @@
 
 .nav-buffer
 {
-    height: 100px;
+	height: 100px;
+}
+
+.comments-buffer
+{
+	height: 30px;
+}
+
+.comment
+{
+	border-radius: 5px;
+	border: 1px solid black;
+	padding: 10px 10px 0px;
+	margin: 15px 25px;
+	background-color: #2c3e50;
+}
+
+.comment header
+{
+	text-align: left;
+	color: white;
+	padding-bottom: 10px;
+	border-bottom: 1px solid black;
+}
+
+.comment .nickname
+{
+	display: block;
+	font-weight: 800;
+}
+
+.comment p
+{
+	text-align: justify;
+	border-radius: 5px;
+	margin-top: 10px;
+	padding: 10px;
+	background-color: white;
+}
+
+.form
+{
+	margin: 15px 25px;
 }

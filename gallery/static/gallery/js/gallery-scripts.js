@@ -9,20 +9,20 @@ var bigPhotoShow = false;
 
 window.onload = function () {
 	id = parseInt(getCookie('photo-id')) || 0;
-    cookieBigPhotoShow = getCookie('bigPhotoShow');
-    if (cookieBigPhotoShow === 'true') {
-        bigPhotoShow = true;
-    }
-    if (bigPhotoShow) {
-        var block = document.getElementsByClassName('gallery-top')[0];
-        block.classList.add('gallery-top-visible');
-    }
+	cookieBigPhotoShow = getCookie('bigPhotoShow');
+	if (cookieBigPhotoShow === 'true') {
+		bigPhotoShow = true;
+	}
+	if (bigPhotoShow) {
+		var block = document.getElementsByClassName('gallery-top')[0];
+		block.classList.add('gallery-top-visible');
+	}
 	showImage();
 }
 
 window.onunload = function () {
 	setCookie('photo-id', id, new Date(new Date().getTime() + 5000));
-    setCookie('bigPhotoShow', bigPhotoShow, new Date(new Date().getTime() + 5000));
+	setCookie('bigPhotoShow', bigPhotoShow, new Date(new Date().getTime() + 5000));
 }
 
 document.onkeydown = function (e) {
@@ -42,26 +42,60 @@ document.onkeydown = function (e) {
 		}
 		showImage();
 	}
-    if (e.keyCode === 27) {
-        e.preventDefault();
-        var block = document.getElementsByClassName('gallery-top')[0];
-        block.classList.remove('gallery-top-visible');
-        bigPhotoShow = false;
-    }
+	if (e.keyCode === 27) {
+		e.preventDefault();
+		var block = document.getElementsByClassName('gallery-top')[0];
+		block.classList.remove('gallery-top-visible');
+		var block = document.getElementsByClassName('comments')[0];
+		block.classList.add('invisible');
+		var block = document.getElementsByClassName('comments-form')[0];
+		block.classList.add('invisible');
+		bigPhotoShow = false;
+	}
 };
 
 document.onclick = function(e) {
 	var classes = e.target.className.split(' ');
 	if (classes.indexOf('small-img') >= 0) {
 		id = photos.indexOf(e.target);
-        var block = document.getElementsByClassName('gallery-top')[0];
-        block.classList.add('gallery-top-visible');
-        bigPhotoShow = true;
+		var block = document.getElementsByClassName('gallery-top')[0];
+		block.classList.add('gallery-top-visible');
+		bigPhotoShow = true;
 		showImage();
 	}
 }
 
-var showImage = function () {
+var showImage = function (flag) {
+	if (!bigPhotoShow) {
+		return
+	}
+	// flag - true, когда id-шка установилась при помощи history.back
+	// нужно ловить это, иначе бесконечная ссылка на саму себя
+	if (!flag) {
+		window.history.pushState({'idPhoto': id}, null, null);
+	}
+	var photoURL = photos[id].src;
+	for (var i = 0; i < 4; i++) {
+		photoURL = photoURL.substr(photoURL.indexOf('/') + 1);
+	}
+	var block = document.getElementsByClassName('comments-form')[0];
+	block.classList.remove('invisible');
+	var inputPhotoURL = document.getElementById('photoURL');
+	inputPhotoURL.setAttribute('value', photoURL)
+	$.ajax({
+		url: '/gallery/getcomments/',
+		data: {photoURL: photoURL},
+		success: function (data) {
+			var comments = data;
+			var block = document.getElementsByClassName('comments')[0];
+			block.classList.remove('invisible');
+			html = '';
+			for (var i = 0; i < comments.length; i++){
+				html += '<div class="row"><div class="col-sm-3"></div><article class="comment col-sm-6"><header><span class="nickname">' + comments[i][1] + '</span></header><p>' + comments[i][0] + '</p></article></div>';
+			}
+			block.innerHTML = html;
+		}
+	});
 	bigPhoto.src = photos[id].src;
 }
 
@@ -79,3 +113,11 @@ function setCookie(name, value, exp) {
 		document.cookie = name + "=" + value + ";";
 	}
 }
+
+// History Listener
+window.addEventListener('popstate', function(e) {
+	if (e.state !== null) {
+		id = e.state.idPhoto;
+		showImage(true);
+	}
+}, false)
