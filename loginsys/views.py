@@ -44,22 +44,24 @@ def register(request):
 	args = {}
 	args.update(csrf(request))
 	if request.method == 'POST':
-		username = request.POST['login']
-		email = request.POST['e-mail']
-		password = request.POST['password']
-		all_emails = Account.objects.filter(email=email)
-		all_usernames = Account.objects.filter(username=username)
-		isEmail = (len(all_emails) == 0)
-		if not isEmail:
-			args['error_u_email'] = not isEmail
-		isUsername = (len(all_usernames) == 0)
-		if not isUsername:
-			args['error_u_username'] = not isUsername
-
-		if isEmail and isUsername:
-			user = Account.objects.create_user(email, password, username=username)
-			user.save
-			args['user_created'] = True
+		try:
+			username = request.POST['login']
+			email = request.POST['e-mail']
+			password = request.POST['password']
+			all_emails = Account.objects.filter(email=email)
+			all_usernames = Account.objects.filter(username=username)
+			isEmail = (len(all_emails) == 0)
+			if not isEmail:
+				args['error_u_email'] = not isEmail
+			isUsername = (len(all_usernames) == 0)
+			if not isUsername:
+				args['error_u_username'] = not isUsername
+			if isEmail and isUsername:
+				user = Account.objects.create_user(email, password, username=username)
+				user.save
+				args['user_created'] = True
+		except Exception:
+			args['something_wrong'] = True
 	return render_to_response('registration.html', args)
 
 def signin(request):

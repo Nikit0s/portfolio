@@ -27,6 +27,9 @@
 		{% if error_u_username %}
 			<div class="text-danger text-center">Пользователь с таким логином уже существует!</div>
 		{% endif %}
+		{% if something_wrong %}
+			<div class="text-danger text-center">Что-то пошло не так!</div>
+		{% endif %}
 		{% if user_created %}
 			Аккаунт был успешно создан!
 		{% endif %}
