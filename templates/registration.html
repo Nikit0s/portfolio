@@ -1,0 +1,35 @@
+{% extends 'base.html '%}
+{% load staticfiles %}
+{% block registration %}
+<section class="registration container">
+	<div class="col-sm-6 col-sm-offset-3">
+		<form action="/auth/register/" method="POST">
+			{% csrf_token %}
+			<div class="input-group">
+				<span class="input-group-addon" id="addon1">Логин</span>
+				<input type="text" name="login" class="form-control" aria-describedly="addon1" required>
+			</div>
+			<div class="input-group">
+				<span class="input-group-addon" id="addon2">e-mail</span>
+				<input type="e-mail"  name="e-mail" class="form-control" aria-describedly="addon2" required>
+			</div>
+			<div class="input-group">
+				<span class="input-group-addon" id="addon3">Пароль</span>
+				<input type="password" name="password" class="form-control" aria-describedly="addon3" required>
+			</div>
+			<div class="input-group col-sm-2 col-sm-offset-5">
+				<input type="submit" class="btn btn-default" value="Зарегистрироваться">
+			</div>
+		</form>
+		{% if error_u_email %}
+			<div class="text-danger text-center">Пользователь с такой почтой уже существует!</div>
+		{% endif %}
+		{% if error_u_username %}
+			<div class="text-danger text-center">Пользователь с таким логином уже существует!</div>
+		{% endif %}
+		{% if user_created %}
+			Аккаунт был успешно создан!
+		{% endif %}
+	</div>
+</section>
+{% endblock %}
