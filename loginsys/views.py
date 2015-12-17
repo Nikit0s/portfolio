@@ -43,9 +43,14 @@ def registration(request):
 def register(request):
 	args = {}
 	args.update(csrf(request))
+	notAllowed = ['javascript', 'script', 'onerror', 'onload']
 	if request.method == 'POST':
 		try:
 			username = request.POST['login']
+			for word in notAllowed:
+				if username.find(word) >= 0:
+					args['something_wrong'] = True
+					return render_to_response('registration.html', args)
 			email = request.POST['e-mail']
 			password = request.POST['password']
 			all_emails = Account.objects.filter(email=email)
