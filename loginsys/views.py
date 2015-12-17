@@ -80,6 +80,8 @@ def login(request):
 	args.update(csrf(request))
 	if request.method == 'POST':
 		username = request.POST['login']
+		username = username.replace('<', '&lt;')
+		username = username.replace('>', '&gt;')
 		password = request.POST['password']
 		account = auth.authenticate(username=username, password=password)
 		if account is not None:
