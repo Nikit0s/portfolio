@@ -63,6 +63,25 @@ document.onclick = function(e) {
 		bigPhotoShow = true;
 		showImage();
 	}
+	if (classes.indexOf('addlike') >=0) {
+		e.preventDefault();
+		var photoURL = photos[id].src;
+		for (var i = 0; i < 4; i++) {
+			photoURL = photoURL.substr(photoURL.indexOf('/') + 1);
+		}
+		$.ajax({
+			url: '/gallery/addlike/',
+			data: {photoURL: photoURL},
+			success: function (data) {
+				showLikes(data.count);
+			}
+		});
+	}
+}
+
+var showLikes = function (count) {
+	var likes = document.getElementById('like-count');
+	likes.innerHTML = count;
 }
 
 var showImage = function (flag) {
@@ -94,6 +113,13 @@ var showImage = function (flag) {
 				html += '<div class="row"><div class="col-sm-3"></div><article class="comment col-sm-6"><header><span class="nickname">' + comments[i][1] + '</span></header><p>' + comments[i][0] + '</p></article></div>';
 			}
 			block.innerHTML = html;
+		}
+	});
+	$.ajax({
+		url: '/gallery/getlikes/',
+		data: {photoURL: photoURL},
+		success: function (data) {
+			showLikes(data.count);
 		}
 	});
 	bigPhoto.src = photos[id].src;

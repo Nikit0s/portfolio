@@ -8,7 +8,9 @@ class Photos(models.Model):
 		db_table = 'Photos'
 		verbose_name = 'Photos'
 		verbose_name_plural = 'Photos'
-	photo = models.ImageField(upload_to='photos');
+	photo = models.ImageField(upload_to='photos')
+	liked = models.ManyToManyField(Account, blank=True, null=True)
+
 
 class Comments(models.Model):
 	class Meta():

@@ -4,6 +4,7 @@ from django.http.response import HttpResponse
 from django.contrib import auth
 from django.core.context_processors import csrf
 from gallery.models import Photos, Comments
+from loginsys.models import Account
 import json
 import bleach
 
@@ -43,3 +44,32 @@ def addComment(request):
 		comment = Comments.objects.create(user=user, commentText=message, commentPhoto=photo)
 		comment.save()
 	return redirect('/gallery/')
+
+def addLike(request):
+	user = auth.get_user(request)
+	data = {}
+	data['username'] = user.username
+	photoURL = request.GET['photoURL']
+	photo = Photos.objects.get(photo=photoURL)
+	liked = photo.liked
+	user_ids = Photos.objects.values_list('liked', flat=True).filter(photo=photoURL)
+	print(user_ids)
+	was = False
+	for user_id in user_ids:
+		if not user_id == None:
+			if Account.objects.get(id=user_id) == user:
+				liked.remove(user)
+				was = True
+				break
+	if not was:
+		liked.add(user)
+	data['count'] = len(liked.all())
+	return HttpResponse(json.dumps(data), content_type='application/json; charset=UTF-8')
+
+def getLikes(request):
+	data = {}
+	photoURL = request.GET['photoURL']
+	photo = Photos.objects.get(photo=photoURL)
+	liked = photo.liked
+	data['count'] = len(liked.all())
+	return HttpResponse(json.dumps(data), content_type='application/json; charset=UTF-8')

@@ -85,3 +85,20 @@
 {
 	margin: 15px 25px;
 }
+
+.photo-likes
+{
+	color: #7696b5;
+	font-size: 20px;
+	margin-top: 15px;
+}
+
+.photo-likes .fa-thumbs-o-up
+{
+	color: #7696b5;
+}
+
+.photo-likes .fa-thumbs-o-up:hover
+{
+	color: #f00;
+}

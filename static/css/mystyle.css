@@ -6,6 +6,11 @@ body
 	font-size: 17px;
 }
 
+nav
+{
+	margin-bottom: 15px;
+}
+
 .navbar-fixed-top
 {
 	padding: 10px 0;
@@ -13,7 +18,7 @@ body
 
 .navbar-my-style
 {
-	background: #18bc9c;
+	background: #7696B5;
 }
 
 .navbar-nav > li > a
@@ -106,12 +111,12 @@ header .intro-text h2 {
 	padding-top:11px;
 	width:50px;
 	height:50px;
-	border-top:3px solid #18bc9c;
+	border-top:3px solid #7696B5;
 	transition-duration:0.2s;
 }
 
 .brands > li > a:hover {
-	color:#18bc9c;
+	color: #7696B5;
 	border-top:3px solid transparent;
 }
 
@@ -301,7 +306,7 @@ header .intro-text h2 {
 
 #contact-form .form-control:focus
 {
-	border-bottom:3px solid #18bc9c;
+	border-bottom:3px solid #7696B5;
 	outline: none;
 	box-shadow:none;
 	-webkit-transition:border-color .3s ease-in;
