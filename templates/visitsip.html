@@ -1,6 +1,5 @@
 {% extends 'base.html' %}
 {% load staticfiles %}
-{% load visits_tags %}
 {% block visits %}
 <div class="nav-buffer"></div>
 <section class="container">
@@ -10,19 +9,17 @@
 				<thead>
 					<tr>
 						<td>IP</td>
+						<td>URI</td>
 						<td>Последний раз</td>
-						<td>Количество</td>
 					</tr>
-				</thead>
-				<tbody>
-				{% for ip in hits_by_ip %}
+					{% for visit in all_visits_by_ip %}
 					<tr>
-						<td><a href="/visits/{{ip.0}}/" style="color:#7696b5">{{ ip.0 }}</a></td>
-						<td>{{ ip.1 }}</td>
-						<td>{{ ip.2 }}</td>
+						<td>{{ visit.ip_address }}</td>
+						<td>{{ visit.uri }}</td>
+						<td>{{ visit.last_visit }}</td>
 					</tr>
-				{% endfor %}
-				</tbody>
+					{% endfor %}
+				</thead>
 			</table>
 		</div>
 	</div>

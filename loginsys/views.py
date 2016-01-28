@@ -120,3 +120,19 @@ def visitsView(request):
 		final_list.append([key, hits[key][0], hits[key][1]])
 	args['hits_by_ip'] = final_list
 	return render_to_response('visits.html', args)
+
+def visitsIpView(request, ip):
+	args = {}
+	args.update(csrf(request))
+	if request.user.is_authenticated():
+		args['signed_in'] = True
+		args['user'] = auth.get_user(request)
+	all_visits_by_ip = Visit.objects.filter(ip_address=ip).order_by('last_visit')
+	all_visits_by_ip = list(all_visits_by_ip)
+	for visit_by_ip in all_visits_by_ip:
+		if visit_by_ip.last_visit:
+			visit_by_ip.last_visit = timezone.localtime(visit_by_ip.last_visit)
+		else:
+			all_visits_by_ip.remove(visit_by_ip)
+	args['all_visits_by_ip'] = all_visits_by_ip
+	return render_to_response('visitsip.html', args)
