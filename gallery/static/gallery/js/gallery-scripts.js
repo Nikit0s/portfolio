@@ -25,6 +25,18 @@ window.onload = function () {
 		body.setAttribute('background', photoURL);
 		body.setAttribute('style', 'background-size: 100%;');
 	}
+	// Loading Text
+	var photos = ['photo_1', 'photo_2', 'photo_3', 'photo_4'];
+	for (var i = 0; i < photos.length; i++) {
+		photoId = photos[i];
+		var photo = document.getElementById(photoId);
+		console.log(photo);
+		while (!photo.complete) {
+			console.log('not yet');
+		}
+		photo.style.display = 'block';
+		photo.nextSibling.nextSibling.style.display = 'None'
+	}
 }
 
 window.onunload = function () {

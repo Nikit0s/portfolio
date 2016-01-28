@@ -28,6 +28,7 @@
 
 .gallery-bottom .small-img
 {
+	display: none;
 	border-radius: 15px;
 	width: 90%;
 }
