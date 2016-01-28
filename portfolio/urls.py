@@ -33,6 +33,7 @@ urlpatterns = patterns('',
 	url(r'^registration/$', 'loginsys.views.registration'),
 	url(r'^contact/$', 'loginsys.views.contact'),
 	url(r'^signin/$', 'loginsys.views.signin'),
+	url(r'^visits/$', 'loginsys.views.visitsView'),
 	url(r'^auth/', include('loginsys.urls')),
 	url(r'^favicon.ico/$', lambda x: HttpResponseRedirect(settings.STATIC_URL+'ico/favicon.ico')), #google chrome favicon fix
 	url(r'^$', include('loginsys.urls')),

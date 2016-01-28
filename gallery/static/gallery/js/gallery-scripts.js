@@ -18,6 +18,13 @@ window.onload = function () {
 		block.classList.add('gallery-top-visible');
 	}
 	showImage();
+	cookieBg = getCookie('bg');
+	if (cookieBg) {
+		var body = document.getElementsByTagName('body')[0];
+		var photoURL = cookieBg;
+		body.setAttribute('background', photoURL);
+		body.setAttribute('style', 'background-size: 100%;');
+	}
 }
 
 window.onunload = function () {
@@ -76,6 +83,19 @@ document.onclick = function(e) {
 				showLikes(data.count);
 			}
 		});
+	}
+}
+
+var setBackground = function(e) {
+	var body = document.getElementsByTagName('body')[0];
+	var photoURL = photos[id].src;
+	if (body.getAttribute('background') == photoURL) {
+		body.setAttribute('background', null);
+		setCookie('bg', null, new Date(new Date().getTime() + 300000));
+	} else {
+		body.setAttribute('background', photoURL);
+		body.setAttribute('style', 'background-size: 100%;');
+		setCookie('bg', photoURL, new Date(new Date().getTime() + 300000));
 	}
 }
 

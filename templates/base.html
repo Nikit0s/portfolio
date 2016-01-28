@@ -20,7 +20,7 @@
 
 	</head>
 	<body data-spy="scroll" data-target="nav">
-	<nav class="navbar navbar-my-style navbar-fixed-top" role="navigation">
+	<nav class="navbar navbar-my-style" role="navigation">
 		<div class="container">
 			<!-- Brand and toggle get grouped for better mobile display -->
 			<div class="navbar-header">
@@ -56,7 +56,10 @@
 					</li>
 					{% endif %}
 					<li>
-						<a href="/#contact">Связь со мной</a>
+						<a href="/#contact">Связаться</a>
+					</li>
+					<li>
+						<a href="/visits/">Визиты</a>
 					</li>
 				</ul>
 			</div>
@@ -71,6 +74,8 @@
 	{% block registration %}
 	{% endblock %}
 	{% block login %}
+	{% endblock %}
+	{% block visits %}
 	{% endblock %}
 	</body>
 </html>

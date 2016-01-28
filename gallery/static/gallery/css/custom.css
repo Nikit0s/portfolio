@@ -5,19 +5,20 @@
 
 .gallery-top
 {
-    display: none;
+	display: none;
 }
 
 .gallery-top-visible
 {
-    display: block;
+	display: block;
 }
 
 .gallery-top .big-img
 {
-    margin: 0 auto;
-    max-height: 600px;
+	margin: 0 auto;
+	max-height: 600px;
 	border-radius: 15px;
+	border: 2px solid #fff;
 }
 
 .gallery-bottom
@@ -41,7 +42,7 @@
 
 .nav-buffer
 {
-	height: 100px;
+	height: 20px;
 }
 
 .comments-buffer

