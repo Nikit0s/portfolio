@@ -5,6 +5,7 @@ for (var i = 0; i < rawPhotos.length; i++) {
 }
 var bigPhoto = document.getElementById('big-photo');
 var id;
+var likes = 0;
 var bigPhotoShow = false;
 
 window.onload = function () {
@@ -37,6 +38,7 @@ window.onload = function () {
 		photo.style.display = 'block';
 		photo.nextSibling.nextSibling.style.display = 'None'
 	}
+	setInterval(checkLikes, 500);
 }
 
 window.onunload = function () {
@@ -147,6 +149,21 @@ var showImage = function (flag) {
 			block.innerHTML = html;
 		}
 	});
+	// $.ajax({
+	// 	url: '/gallery/getlikes/',
+	// 	data: {photoURL: photoURL},
+	// 	success: function (data) {
+	// 		showLikes(data.count);
+	// 	}
+	// });
+	bigPhoto.src = photos[id].src;
+}
+
+var checkLikes = function () {
+	var photoURL = photos[id].src;
+	for (var i = 0; i < 4; i++) {
+		photoURL = photoURL.substr(photoURL.indexOf('/') + 1);
+	}
 	$.ajax({
 		url: '/gallery/getlikes/',
 		data: {photoURL: photoURL},
@@ -154,7 +171,6 @@ var showImage = function (flag) {
 			showLikes(data.count);
 		}
 	});
-	bigPhoto.src = photos[id].src;
 }
 
 var getCookie = function (name) {
